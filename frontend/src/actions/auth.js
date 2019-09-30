@@ -6,6 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   CREATE_EVENT,
 } from "./types";
 import setUserToken from "../utils/setAdminToken";
@@ -36,36 +38,36 @@ export const loadUser = () => async (dispatch) => {
 
 
 // Register User
-// export const register = ({ name, email, password }) => async dispatch => {
-//   const config = {
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   }; 
+export const register = ({ name, email, password }) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }; 
 
-//   const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password });
 
-//   try {
-//     const res = await axios.post("/api/users", body, config);
+  try {
+    const res = await axios.post("http://localhost:8000/api/user/registe", body, config);
 
-//     dispatch({
-//       type: REGISTER_SUCCESS,
-//       payload: res.data
-//     });
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data
+    });
 
-//     dispatch(loadUser());
-//   } catch (err) {
-//     const errors = err.response.data.errors;
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response;
 
-//     if (errors) {
-//       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
-//     }
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
 
-//     dispatch({
-//       type: REGISTER_FAIL
-//     });
-//   }
-// };
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
+};
 //create evnet
 
 
