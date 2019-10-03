@@ -11,6 +11,7 @@ import {
   CREATE_EVENT,
 } from "./types";
 import setUserToken from "../utils/setAdminToken";
+import setNormalUserToken from "../utils/setUserToken";
 
 // check token and Load User 
 export const loadUser = () => async (dispatch) => {
@@ -23,6 +24,28 @@ export const loadUser = () => async (dispatch) => {
   
   try {
     const res = await axios.get("http://localhost:8000/api/admin");
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
+  } catch (err) {
+    // dispatch(setAlert(err.response.data, "danger"))
+    dispatch({
+      type: AUTH_ERROR
+    });
+  }
+};
+export const loadNormalUser = () => async (dispatch) => {
+  
+  if (localStorage.token) {
+    setNormalUserToken(localStorage.token);
+  }
+  //Headers
+
+  
+  try {
+    const res = await axios.get("http://localhost:8000/api/user");
 
     dispatch({
       type: USER_LOADED,
@@ -48,7 +71,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post("http://localhost:8000/api/user/registe", body, config);
+    const res = await axios.post("http://localhost:8000/api/user/register", body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -57,10 +80,10 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     dispatch(loadUser());
   } catch (err) {
-    const errors = err.response;
+    const errors = err.response.data;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+       dispatch(setAlert(errors, "danger"));
     }
 
     dispatch({

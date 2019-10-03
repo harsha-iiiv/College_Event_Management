@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import Alert from './userlayout/Alert';
 
 const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
   const authLinks = (
@@ -21,10 +22,8 @@ const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
       </li>
       <li>
         <Link to="/admin" onClick={logout} href="#!">
-          
-            <i className="fas fa-sign-out-alt" />{" "}
-            <span className="hide-sm">Logout</span>
-           
+          <i className="fas fa-sign-out-alt" />{" "}
+          <span className="hide-sm">Logout</span>
         </Link>
       </li>
     </ul>
@@ -32,7 +31,8 @@ const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
 
   const guestLinks = (
     <ul>
-    
+      <Alert />
+
       <li>
         <Link to="/events">Events</Link>
       </li>

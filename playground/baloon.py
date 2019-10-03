@@ -6,26 +6,36 @@ def permute(arr):
 
     if(len(arr)==len(temp)):
         print(temp)
-        for i in range(0, len(temp)-1):
-            score = temp[i+1] + score
-        score = score + temp[len(temp) - 1]    
-        print(score)    
+        # for i in temp:
+        #     if(i==0):
+        #         score = score + arr[i+1]
+        
       
         
     else:
         for i in range(len(arr)):
+            print("*******************************************")
+            print(i)
             if(vis[i]==False):
-                temp.append(arr[i])
+                temp.append(i)
+                print(temp)
                 vis[i] = True
+                print('***********before permute *************')
+            
+                print(i)
                 permute(arr)
+                print('***********after permute *************')
+                print(i)
+                print(temp)
                 temp.pop()
+                print(temp)
                 vis[i] = False
     
 
 
 if __name__ == "__main__":
     
-    arr = [2,3,1,4,5]
+    arr = [2,3,1]
     for i in range(10):
         vis.append(False)
     permute(arr)
