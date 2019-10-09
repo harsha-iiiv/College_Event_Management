@@ -35,17 +35,7 @@ const Login = ({ login, logout, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return (
-      <div>
-        Login success
-        <li>
-          <a onClick={logout} href="#!">
-            <i className="fas fa-sign-out-alt" />{" "}
-            <span className="hide-sm">Logout</span>
-          </a>
-        </li>
-      </div>
-    );
+    return <Redirect to="/admin" />
   }
   var errors = [];
 

@@ -41,16 +41,50 @@ class EventForm extends Component {
   };
 
   handleOk = e => {
-    console.log(e);
+ const {
+   name,
+   date,
+   time,
+   venue,
+   Description,
+   type,
+   image,
+   logo,
+   organiserName,
+   role,
+   email,
+   ticketrequired,
+   ticketname,
+   isPaid,
+   ticketprice
+ } = this.state;
+  this.props.createEvent(
+      name,
+      date,
+      time,
+      venue,
+      Description,
+      type,
+      image,
+      logo,
+      organiserName,
+      role,
+      email,
+      ticketrequired,
+      ticketname,
+      isPaid,
+      ticketprice
+    );
+    
     this.setState({
       visible: false
     });
+    
 
   
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false
     });
@@ -77,7 +111,6 @@ class EventForm extends Component {
   };
 
   render() {
-    const { step } = this.state;
     const {
       name,
       date,
@@ -154,25 +187,7 @@ class EventForm extends Component {
               prevStep={this.previousStep}
             />
           </StepWizard>
-           <Button type="primary" onClick={ createEvent(
-            name,
-            date,
-            time,
-            venue,
-            Description,
-            type,
-            image,
-            logo,
-            organiserName,
-            role,
-            email,
-            ticketrequired,
-            ticketname,
-            isPaid,
-            ticketprice
-          )}>
-          Open Modal
-        </Button>
+          
         </Modal>
       </div>
     );

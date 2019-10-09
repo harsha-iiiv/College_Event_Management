@@ -5,7 +5,7 @@ import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert, register, isAuthenticated, error }) => {
+const Register = ({ setAlert, register, isUserAuthenticated}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,12 +27,10 @@ const Register = ({ setAlert, register, isAuthenticated, error }) => {
     }
   };
 
-  if (isAuthenticated) {
+  if (isUserAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
-     console.log('====================================');
-     console.log(error);
-     console.log('====================================');
+  
   return (
     <Fragment>
       <h1 className="large text-primary">Sign Up</h1>
@@ -85,7 +83,6 @@ const Register = ({ setAlert, register, isAuthenticated, error }) => {
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-
     </Fragment>
   );
 };
@@ -97,8 +94,8 @@ Register.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  error : state.error
+  isUserAuthenticated: state.auth.isUserAuthenticated,
+  
 });
 
 export default connect(

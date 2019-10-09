@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const displayevent = await events.find();
     res.json(displayevent);
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({ msg: "Sorry unable fetch event" });
   }
 });
 
@@ -55,7 +55,6 @@ router.post("/",verifyadmin, async (req, res) => {
     isPaid,
     ticketprice
   });
-  console.log(Event);
   try {
     const saveevnt = await Event.save();
     res.json(saveevnt);
@@ -67,9 +66,9 @@ router.post("/",verifyadmin, async (req, res) => {
 
 
 //TO GET SPECIFIC POST
-router.get('/:postID',  async (req, res) => {
+router.get("/:postID",  async (req, res) => {
      try {
-         const displayPostbyID = await posts.findById(req.params.postID);
+         const displayPostbyID = await events.findById(req.params.postID);
          res.send(displayPostbyID);
      } catch (error) {
          res.json({ message: error});

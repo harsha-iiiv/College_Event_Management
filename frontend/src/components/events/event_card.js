@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Icon, Avatar } from "antd";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 export default class Eventcard extends Component {
@@ -16,17 +17,20 @@ export default class Eventcard extends Component {
           }
           actions={[
             <Icon type="icon-tuichu" key="setting" />,
-             <Icon type="like" />,
+            <Icon type="like" />,
             <Icon type="ellipsis" key="ellipsis" />
           ]}
         >
-          <Meta
-            avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-            }
-            title={this.props.event.name}
-            description={this.props.event.Description}
-          />
+          <Link to={`/events/${this.props.event._id}`}>
+            {" "}
+            <Meta
+              avatar={
+                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              }
+              title={this.props.event.name}
+              description={this.props.event.Description}
+            />
+          </Link>
         </Card>
       </div>
     );

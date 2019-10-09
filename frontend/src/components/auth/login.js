@@ -2,21 +2,21 @@ import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
-import { logout } from "../../actions/auth";
+import { userlogin } from "../../actions/auth";
+import { userlogout } from "../../actions/auth";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import "antd/dist/antd.css";
 
-const Login = ({ login, logout, isAuthenticated }) => {
+const ULogin = ({ userlogin, userlogout, isUserAuthenticated }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: ""
   });
   const [formValid, setformValid] = useState({
     isValid: true
   });
-
-  const { name, password } = formData;
+  
+  const { email, password } = formData;
 
   const onChange = e => {
     // if (name.length < 5) {
@@ -31,15 +31,15 @@ const Login = ({ login, logout, isAuthenticated }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    login(name, password);
+    userlogin(email, password);
   };
 
-  if (isAuthenticated) {
+  if (isUserAuthenticated) {
     return (
       <div>
         Login success
         <li>
-          <a onClick={logout} href="#!">
+          <a onClick={userlogout} href="#!">
             <i className="fas fa-sign-out-alt" />{" "}
             <span className="hide-sm">Logout</span>
           </a>
@@ -47,17 +47,16 @@ const Login = ({ login, logout, isAuthenticated }) => {
       </div>
     );
   }
-  var errors = [];
 
   const testLog = (
     <Form onSubmit={e => onSubmit(e)} className="login-form">
       <Form.Item style={{ width: 250 }}>
         <Input
           prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="name"
-          placeholder="input username"
-          name="name"
-          value={name}
+          type="email"
+          placeholder="input email id"
+          name="email"
+          value={email}
           onChange={e => onChange(e)}
           required
         />
@@ -71,6 +70,7 @@ const Login = ({ login, logout, isAuthenticated }) => {
           value={password}
           onChange={e => onChange(e)}
           minLength="6"
+          required
         />
       </Form.Item>
       {/* {errors.length > 0 ? <span>{errors[0]}</span> : ""} */}
@@ -93,16 +93,16 @@ const Login = ({ login, logout, isAuthenticated }) => {
   return <Fragment>{testLog}</Fragment>;
 };
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+ULogin.propTypes = {
+  userlogin: PropTypes.func.isRequired,
+  isUserAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isUserAuthenticated: state.auth.isUserAuthenticated
 });
 
 export default connect(
   mapStateToProps,
-  { login, logout }
-)(Login);
+  { userlogin, userlogout }
+)(ULogin);

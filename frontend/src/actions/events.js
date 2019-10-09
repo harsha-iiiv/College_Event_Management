@@ -1,12 +1,13 @@
 import axios from "axios";
-import { setAlert, clearError } from "./alert";
+import { setAlert } from "./alert";
 
 import {
   GET_EVENTS,
   EVENT_ERROR,
   CREATE_EVENT,
   GET_EVENT,
-  EVENTS_LOADING
+  EVENTS_LOADING,
+  EVENT_REG
 } from "./types";
 
 //GET EVENTS
@@ -26,7 +27,23 @@ export const getEvents = () => async dispatch => {
     });
   }
 };
-
+export const getEventById = eventId => async dispatch => {
+  try {
+    const res = await axios.get(`http://localhost:8000/api/events/${eventId}`);
+   console.log(res);
+   
+    dispatch({
+      type: GET_EVENT,
+      payload: res.data
+    });
+  } catch (err) {
+    console.log("errroro")
+    dispatch({
+      type: EVENT_ERROR,
+      payload: "sorry"
+    });
+  }
+};
 export const eventsLoading = () =>{
   return {
     type: EVENTS_LOADING
@@ -47,7 +64,7 @@ export const createEvent = (name,date,time,venue,Description,type,image,logo,org
     const res = await axios.post("http://localhost:8000/api/events", body, config);
      console.log("TRing");
 
-    
+    dispatch(setAlert("Event added successfully", "success"));
   dispatch({
     type: CREATE_EVENT,
     payload: res.data
@@ -67,6 +84,42 @@ export const createEvent = (name,date,time,venue,Description,type,image,logo,org
     // });
   }
 };
+
+// Event registrion
+
+export const eventreg = (name, email, phone, event, user)=> async (dispatch) =>{
+  const config = {
+    headers: {
+      "Content-Type" : "application/json" 
+    }
+  }
+
+  const body = JSON.stringify({name, email, phone, event , user });
+  console.log(body);
+  
+  try {
+        const res = await axios.post("http://localhost:8000/api/user/event_reg", body, config);
+
+    dispatch(setAlert("Event registration successfully", "success"));
+  dispatch({
+    type: EVENT_REG,
+    payload: res.data
+  });
+ 
+
+  }
+   catch (err) {
+     const errors = err.response.data.errors;
+
+     if (errors) {
+       errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+     }
+    dispatch({
+      type: EVENT_ERROR,
+      payload: { msg: "sorry" }
+    });
+  }
+}
 
 
 //ADD EVENTS

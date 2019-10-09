@@ -1,6 +1,8 @@
 import {
   GET_EVENTS,
+  GET_EVENT,
   EVENT_ERROR,
+  EVENT_REG,
   ADD_EVENT,
   EVENTS_LOADING,
   CREATE_EVENT
@@ -8,7 +10,9 @@ import {
 
 const initialState = {
   events: [],
-  loading: false
+  loading: false,
+  event : null,
+  reg_events: []
 };
 
 export default function(state = initialState, action) {
@@ -22,6 +26,11 @@ export default function(state = initialState, action) {
          loading: false
         // loading: false
       };
+      case GET_EVENT:
+        return {
+          ...state,
+          event: payload
+        }
       case EVENTS_LOADING:
         return {
           ...state,
@@ -31,24 +40,15 @@ export default function(state = initialState, action) {
         return state;
       default:
         return state;
-    // case GET_POST:
-    //   return {
-    //     ...state,
-    //     post: payload,
-    //     loading: false
-    //   };
-    // case ADD_EVENT:
-    //   return {
-    //     ...state,
-    //     posts: [payload, ...state.events],
-    //     loading: false
-    //   };
-    // // case DELETE_POST:
+    
+    // // case DELETE_EVENT:
     // //   return {
     // //     ...state,
-    // //     posts: state.posts.filter(post => post._id !== payload),
+    // //     posts: state.events.filter(post => events._id !== payload),
     // //     loading: false
     // //   };
+    case EVENT_REG:
+      return state
     case EVENT_ERROR:
       return {
         ...state,

@@ -1,14 +1,18 @@
 import axios from "axios";
-import { setAlert, clearError } from "./alert";
+import { setAlert} from "./alert";
 import {
   USER_LOADED,
+  NUSER_LOADED,
   AUTH_ERROR,
+  UAUTH_ERROR,
   LOGIN_SUCCESS,
+  ULOGIN_SUCCESS,
   LOGIN_FAIL,
+  ULOGIN_FAIL,
   LOGOUT,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  CREATE_EVENT,
+  USER_LOGOUT,
 } from "./types";
 import setUserToken from "../utils/setAdminToken";
 import setNormalUserToken from "../utils/setUserToken";
@@ -38,23 +42,23 @@ export const loadUser = () => async (dispatch) => {
 };
 export const loadNormalUser = () => async (dispatch) => {
   
-  if (localStorage.token) {
-    setNormalUserToken(localStorage.token);
+  if (localStorage.userToken) {
+    setNormalUserToken(localStorage.userToken);
   }
   //Headers
 
   
   try {
-    const res = await axios.get("http://localhost:8000/api/user");
+    const res = await axios.get(`http://localhost:8000/api/user`);
 
     dispatch({
-      type: USER_LOADED,
+      type: NUSER_LOADED,
       payload: res.data
     });
   } catch (err) {
     // dispatch(setAlert(err.response.data, "danger"))
     dispatch({
-      type: AUTH_ERROR
+      type: UAUTH_ERROR
     });
   }
 };
@@ -77,13 +81,16 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+    console.log(res.data);
+    
 
-    dispatch(loadUser());
+    dispatch(loadNormalUser());
   } catch (err) {
-    const errors = err.response.data;
-
+    const errors = err.response.data.errors;
+   console.log(errors);
+   
     if (errors) {
-       dispatch(setAlert(errors, "danger"));
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
     }
 
     dispatch({
@@ -128,8 +135,44 @@ export const login = (name, password) => async dispatch => {
     });
   }
 };
+export const userlogin = (email, password) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    } 
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  try {
+    const res = await axios.post("http://localhost:8000/api/user/login", body, config);
+    
+
+  dispatch({
+    type: ULOGIN_SUCCESS,
+    payload: res.data
+  });
+
+
+     dispatch(loadNormalUser());
+     
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: ULOGIN_FAIL
+    });
+  }
+};
 
 // Logout / Clear Profile
 export const logout = () => dispatch => {
    dispatch({ type: LOGOUT });
+};
+export const userlogout = () => dispatch => {
+   dispatch({ type: USER_LOGOUT });
 };

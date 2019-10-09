@@ -5,7 +5,7 @@ const {loginValidate_admin} = require('../../validation/user_validate');
 // const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); 
 const verifyAdmin = require('../verify_admin')
-
+const decode = require('jwt-decode')
 
 router.get('/', verifyAdmin, async (req, res) => {
   try {
@@ -16,7 +16,7 @@ router.get('/', verifyAdmin, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
+ 
 
 router.post('/', async (req, res) => {
 
@@ -31,22 +31,31 @@ router.post('/', async (req, res) => {
    try {
      const user = await User.findOne({ "name": req.body.name });
      console.log(user)
-     if (!user) return res.status(400).send("username is not found");
+     if (!user) return res
+                  .status(400)
+                  .json({ errors: [{ msg: "Invalid Credentials" }] });
 
      //Password validation
     //  const valid_password = await bcrypt.compare(
     //    req.body.password,
     //    user.password
     //  );
-     if (user.password!=req.body.password) return res.status(400).send("password is not valid");
+     if (user.password!=req.body.password)  return res
+                                              .status(400)
+                                              .json({
+                                                errors: [
+                                                  { msg: "Invalid Credentials" }
+                                                ]
+                                              });
 
      // create and assign a token here
 
      const token = jwt.sign(
        { _id: user._id },
        process.env.ADMIN_TOKEN_SECRET,
-       { expiresIn: '1h' },
+       { expiresIn: 60*30}, 
        (err, token) => {
+       
          if (err) throw err;
          res.json({ token });
        }

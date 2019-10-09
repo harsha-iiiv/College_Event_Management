@@ -19,7 +19,11 @@ const Userschema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    resetPasswordToken: {
+      type: String
+    },
+    resetPasswordExpires: { type: Date, default: Date.now }
   },
   {
     timestamps: true

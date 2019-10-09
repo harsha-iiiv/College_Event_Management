@@ -10,9 +10,3 @@ export const setAlert = (msg, alertType, timeout = 5000) => dispatch => {
 
   setTimeout(() => dispatch({ type: CLEAR_ERROR, payload: id }), timeout);
 };
-export const clearError = () =>{
-  return {
-    type: CLEAR_ERROR
-
-  };
-};

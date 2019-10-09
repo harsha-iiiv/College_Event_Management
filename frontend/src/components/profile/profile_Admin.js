@@ -7,10 +7,10 @@ class Profile_Admin extends Component {
 
   render() {
 
-    if(!this.props.isAuthenticated)
+    if(this.props.user===null)
     return(
         <div>
-            You are not allowed to access this page
+            Please wait..
         </div>
     )
     else
