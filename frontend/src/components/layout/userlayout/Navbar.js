@@ -3,25 +3,24 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-import Alert from './userlayout/Alert';
 
-const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/admin/dashboard_admin">
+        <Link to="/dashboard"> 
           <i className="fas fa-user" />{" "}
-          <span className="hide-sm">Dashboard</span>
+          <span className="hide-sm">Dashboard</span>  
         </Link>
       </li>
       <li>
-        <Link to="/admin/create_event">
+        <Link to="/events">
           <i className="fas fa-user" />{" "}
-          <span className="hide-sm">Create Event</span>
+          <span className="hide-sm"> Events</span>
         </Link>
       </li>
       <li>
-        <Link to="/admin" onClick={logout} href="#!">
+        <Link to="/" onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{" "}
           <span className="hide-sm">Logout</span>
         </Link>
@@ -31,13 +30,14 @@ const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
 
   const guestLinks = (
     <ul>
-      <Alert />
-
       <li>
         <Link to="/events">Events</Link>
       </li>
       <li>
-        <Link to="/admin/login">Login</Link>
+        <Link to="/login">Login</Link>
+      </li>
+      <li>
+        <Link to="/signup">Sign Up</Link>
       </li>
     </ul>
   );
@@ -56,7 +56,7 @@ const AppNavbar = ({ auth: { isAuthenticated, isLoading }, logout }) => {
   );
 };
 
-AppNavbar.propTypes = {
+Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -68,4 +68,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logout }
-)(AppNavbar);
+)(Navbar);

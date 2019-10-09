@@ -50,6 +50,11 @@ import uuid from 'uuid';
 import {connect} from 'react-redux';
 import { getEvents } from '../../actions/events';
 import PropTypes from 'prop-types';
+import  Eventcard from './event_card';
+import { Element } from "react-scroll";
+import { Row, Col, message } from "antd";
+
+
 
 class Events extends Component {
                 
@@ -58,18 +63,37 @@ class Events extends Component {
                   this.props.getEvents();
                  }
                  render() {
-                  const {events} =  this.props.events
-                  if(this.props.events.loading)
-                  return (<div>PLease wait...</div>)
-                  else
-                   return (
-                     <div>
-                       {events.map(person => (
-                         <li key={uuid()}>{person._id}</li>
-                       ))}
-                     </div>
-                   );
-                 }
+		let events;
+		if (this.props.events.events.loading) {
+			events = <h3>Just a moment</h3>;
+		} else {
+			if (this.props.events.events.length === 0) {
+				events = <div className="nothing-to-show">No events added yet</div>;
+			} else {
+				events = this.props.events.events.map((event, i) => (
+					<Col
+						key={i}
+						sm={{ span: 20, offset: 2 }}
+						md={{ span: 10, offset: 1 }}
+						xl={{ span: 8, offset: 0 }}
+					>
+						<Eventcard event={event} />
+					</Col>
+				));
+			}
+		}
+
+		return (
+			<div className="home-page">
+				<div className="homepage-events">
+					<div className="homepage-events-header">Tutorials</div>
+					<Element name="events">
+						<Row gutter={{ sm: 0, md: 4, xl: 8 }}>{events}</Row>
+					</Element>
+				</div>
+			</div>
+		);
+	}
                }
 Events.propTypes = {
   getEvents: PropTypes.func.isRequired,
