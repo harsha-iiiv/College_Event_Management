@@ -38,3 +38,15 @@ Input{
   outline-style: auto;
   
   }
+  .container{
+    margin-top:200px;
+    width:1024px;
+    height:34px;
+    margin-right: 50px;
+  }
+  .button{
+    height:34px;
+    margin:0 auto;
+    margin-right:20px;
+    float:left;
+  }
