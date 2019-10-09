@@ -23,12 +23,16 @@ class Step2Form extends Component {
           <Radio value={"Drama"}>Drama</Radio>
           <Radio value={"Sports"}>Sports</Radio>
         </Radio.Group>
+        <br />
+        <br />
         <Button type="primary" onClick={this.props.nextStep}>
           Continue
         </Button>
         <Button type="primary" onClick={this.props.previousStep}>
           Back
         </Button>
+        <br />
+        <br />
       </React.Fragment>
     );
   }
