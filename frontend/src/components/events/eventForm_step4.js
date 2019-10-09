@@ -28,20 +28,34 @@ class Step4Form extends Component {
     return (
       <React.Fragment>
         <Form>
-          <Input
+          <Input type="text"
             onChange={handleChange("organiserName")}
             defaultValue={values.organiserName}
+            placeholder="Organiser Name"
           />
-          <Input onChange={handleChange("role")} defaultValue={values.role} />
-          <Input onChange={handleChange("email")} defaultValue={values.email} />
-          <Input
+          <br />
+          <br />
+          <Input type="text" onChange={handleChange("role")} defaultValue={values.role} placeholder="Role" />
+          <br />
+          <br />
+          <Input type="email" onChange={handleChange("email")} defaultValue={values.email} name="Email"
+          placeholder="Email"/>
+          <br />
+          <br />
+          <Input type="text"
             onChange={handleChange("ticketrequired")}
             defaultValue={values.ticketrequired}
+            placeholder="Ticket"
           />
-          <Input
+          <br />
+          <br />
+          <Input type="text"
             onChange={handleChange("ticketname")}
             defaultValue={values.ticketname}
+            placeholder="Ticket Name"
           />
+          <br />
+          <br />
           <Radio.Group
             onChange={handleChange("isPaid")}
             defaultValue={values.isPaid}
@@ -50,18 +64,26 @@ class Step4Form extends Component {
             <Radio value={false}>Free</Radio>
           </Radio.Group>{" "}
           <br />
-          <Input
+          <br />
+          <Input type="text"
             onChange={handleChange("ticketprice")}
             defaultValue={values.ticketprice}
+            placeholder="Price"
           />
+          <br />
           <br />
         </Form>
         <Button type="primary" onClick={this.props.nextStep}>
           Continue
         </Button>
+
+           
         <Button type="primary" onClick={this.props.previousStep}>
           Back
         </Button>
+        <br />
+        <br />
+           
       </React.Fragment>
     );
   }

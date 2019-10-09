@@ -17,19 +17,19 @@ import { Modal, Button } from "antd";
 class EventForm extends Component {
   state = {
     step: 1,
-    name: "jlnd",
-    date: "2019-09-02 16:06:02.656Z",
-    time: "10:30",
-    venue: "JKjbd",
-    Description: "thsui my evenet",
-    type: "music",
-    image: "45",
+    name: "",
+    date: "",
+    time: "",
+    venue: "",
+    Description: "",
+    type: "",
+    image: "",
     logo: "",
-    organiserName: "Name",
-    role: "admin",
-    email: "hasrsh@hjbs.com",
-    ticketrequired: true,
-    ticketname: "Hello music",
+    organiserName: "",
+    role: "",
+    email: "",
+    ticketrequired: false,
+    ticketname: "",
     isPaid: false,
     ticketprice: 30,
     visible: false
@@ -148,8 +148,8 @@ class EventForm extends Component {
 
     return (
       <div className="container">
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal
+        <Button className="button" type="primary" onClick={this.showModal}>
+          Create Event
         </Button>
         <Modal
           title="Basic Modal"
@@ -187,7 +187,29 @@ class EventForm extends Component {
               prevStep={this.previousStep}
             />
           </StepWizard>
+<<<<<<< HEAD
           
+=======
+           <Button type="primary" onClick={ createEvent(
+            name,
+            date,
+            time,
+            venue,
+            Description,
+            type,
+            image,
+            logo,
+            organiserName,
+            role,
+            email,
+            ticketrequired,
+            ticketname,
+            isPaid,
+            ticketprice
+          )}>
+          Submit
+        </Button>
+>>>>>>> 1d1972ceb60342f646e0efb31a0eee09d2e31031
         </Modal>
       </div>
     );
