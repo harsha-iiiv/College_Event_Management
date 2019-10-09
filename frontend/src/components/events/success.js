@@ -20,15 +20,6 @@ class Success extends Component {
       <React.Fragment>
         <h1>Please chek once details and submit</h1>
 
-        <Button
-          type="primary"
-          
-        >
-          Submit
-        </Button>
-        <Button type="primary" onClick={this.props.nextStep}>
-          Continue
-        </Button>
         <Button type="primary" onClick={this.props.previousStep}>
           Back
         </Button>

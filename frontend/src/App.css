@@ -30,4 +30,11 @@
   to {
     transform: rotate(360deg);
   }
+
 }
+Input{
+  color: blue;
+  border-color: black;
+  outline-style: auto;
+  
+  }

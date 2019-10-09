@@ -17,14 +17,16 @@ class Step3Form extends Component {
     return (
       <React.Fragment>
         <Form>
-          <Input onChange={handleChange("image")} defaultValue={values.image} />
+          <Input type="text" onChange={handleChange("image")} defaultValue={values.image} placeholder="Image" />
           <br />
-          <Input
+          <br />
+          <Input type="text"
             //   hintText="Enter Event date"
             //   floatingLabelText="Event Date"
             onChange={handleChange("logo")}
-            defaultValue={values.logo}
+            defaultValue={values.logo} placeholder="Logo"
           />
+          <br />
           <br />
         </Form>
         <Button type="primary" onClick={this.props.nextStep}>
@@ -33,6 +35,8 @@ class Step3Form extends Component {
         <Button type="primary" onClick={this.props.previousStep}>
           Back
         </Button>
+        <br />
+        <br />
       </React.Fragment>
     );
   }
