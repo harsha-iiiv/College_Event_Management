@@ -18,7 +18,7 @@ class Success extends Component {
     const {name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice} = this.props.values
     return (
       <React.Fragment>
-        <h1>Please check the details once before submitting</h1>
+        <h1>Please check the details once before submitting.</h1>
 
         <Button type="primary" onClick={this.props.previousStep}>
           Back
