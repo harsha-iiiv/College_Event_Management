@@ -5,6 +5,7 @@ import Login from '../auth/login_Admin';
 import Admin from '../layout/Admin';
 import ULogin from '../auth/login';
 import Alert from '../layout/userlayout/Alert';
+import Home from '../layout/userlayout/Homepage';
 // import Dashboard from '../dashboard';
 // import EditProfile from '../profile-forms/EditProfile';
 // import Event from '../events/event_card';
@@ -22,10 +23,10 @@ const Routes = () => {
       <Alert/>
       <Switch>
         
-        {/* <Route exact path='/register' component={Register} /> */}
+        <Route exact path='/signup' component={Register} />
         <Route exact path='/admin/login' component={Login} />
         <Route exact path='/admin' component={Admin} />
-        {/* <Route exact path='/a' component={Alert} /> */}
+        <Route exact path='/' component={Home} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={ULogin} />
         <PrivateRoute exact path='/admin/profile_admin' component={Profile_Admin} />

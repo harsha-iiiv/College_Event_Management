@@ -37,50 +37,56 @@ const Login = ({ login, logout, isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to="/admin" />
   }
-  var errors = [];
+
 
   const testLog = (
-    <Form onSubmit={e => onSubmit(e)} className="login-form">
-      <Form.Item style={{ width: 250 }}>
-        <Input
-          prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="name"
-          placeholder="input username"
-          name="name"
-          value={name}
-          onChange={e => onChange(e)}
-          required
-        />
-      </Form.Item>
-      <Form.Item style={{ width: 250 }}>
-        <Input
-          prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={e => onChange(e)}
-          minLength="6"
-        />
-      </Form.Item>
-      {/* {errors.length > 0 ? <span>{errors[0]}</span> : ""} */}
-      <Form.Item>
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
-        <Button
-          type="primary"
-          disabled={!formValid.isValid}
-          htmlType="submit"
-          className="login-form-button"
-        >
-          Log in
-        </Button>
-      </Form.Item>
-    </Form>
+    <div class="container adminlogin">
+      <Form onSubmit={e => onSubmit(e)} className="login-form">
+        <Form.Item className="fitem" >
+          <Input
+            prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="name"
+            placeholder="input username"
+            name="name"
+            value={name}
+            onChange={e => onChange(e)}
+            required
+          />
+        </Form.Item>
+        <Form.Item style={{ width: '30%' }}>
+          <Input
+            prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={e => onChange(e)}
+            minLength="6"
+          />
+        </Form.Item>
+        <Form.Item>
+          <a className="login-form-forgot" href="">
+            Forgot password
+          </a>
+          <Button
+            type="primary"
+            disabled={!formValid.isValid}
+            htmlType="submit"
+            className="login-form-button"
+          >
+            Log in
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 
-  return <Fragment>{testLog}</Fragment>;
+  return (
+    <Fragment>
+      <h1 className="large text-primary">Admin Login</h1>
+      {testLog}
+    </Fragment>
+  );
 };
 
 Login.propTypes = {

@@ -187,9 +187,7 @@ class EventForm extends Component {
               prevStep={this.previousStep}
             />
           </StepWizard>
-<<<<<<< HEAD
-          
-=======
+
            <Button type="primary" onClick={ createEvent(
             name,
             date,
@@ -209,7 +207,6 @@ class EventForm extends Component {
           )}>
           Submit
         </Button>
->>>>>>> 1d1972ceb60342f646e0efb31a0eee09d2e31031
         </Modal>
       </div>
     );

@@ -28,7 +28,6 @@ export default class Eventcard extends Component {
                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
               }
               title={this.props.event.name}
-              description={this.props.event.Description}
             />
           </Link>
         </Card>

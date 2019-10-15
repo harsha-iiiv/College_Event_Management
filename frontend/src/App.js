@@ -1,25 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import AppNavbar from './components/layout/AppNavbar'
-import Navbar from './components/layout/userlayout/Navbar'
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Admin from './components/layout/Admin'
 import Routes from './components/routing/Routes'
-import Uroutes from './components/routing/Uroutes'
 import React, { Component ,Fragment} from 'react'
 import { loadUser } from './actions/auth';
 import { loadNormalUser } from "./actions/auth";
 import setAuthToken from "./utils/setAdminToken";
 import setUserToken from "./utils/setUserToken";
+import { Layout, Menu, Breadcrumb, Icon } from "antd";
+const { Header, Content, Footer } = Layout;
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
- if(localStorage.userToken){
-     setUserToken(localStorage.userToken);
- }
 
 class App extends Component {
  
@@ -44,12 +38,34 @@ class App extends Component {
        <Provider store={store}>
          <Router>
            <Fragment>
-             <AppNavbar />
-             <Switch>
-               <Route exact path="/admin" component={Admin} />
-               <Route component={Routes} />
-             </Switch>
-            
+             <Footer
+               style={{
+                 background: "#ffff",
+                 padding: 0.5,
+                 width: '100%'
+               }}
+             >
+               <AppNavbar />
+
+               <div
+                 style={{
+                   background: "#ffff",
+                   padding: 2,
+                   width: "100%",
+                   minHeight: 880,
+                   marginTop:64
+                 }}
+               >
+                 <Switch>
+                   <Route exact path="/admin" component={Admin} />
+                   <Route component={Routes} />
+                 </Switch>
+               </div>
+               <Footer style={{ textAlign: "center" }}>
+                 CEM ©2019 Made with{" "}
+                 <Icon type="heart" theme="twoTone" twoToneColor="#eb2f96" />
+               </Footer>
+             </Footer>
            </Fragment>
          </Router>
        </Provider>

@@ -102,7 +102,7 @@ class Events_details extends Component {
             eventreg = {this.props.eventreg}
             userID = {this.props.user != null ? this.props.user._id : "Please wait"}
           />
-
+           
           <Button type="primary">Submit</Button>
         </Modal>
       </div>

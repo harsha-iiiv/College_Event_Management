@@ -1,0 +1,159 @@
+
+
+@mixin m($val) {
+    margin-top: $val;
+    margin-bottom: $val;
+}
+
+// 'margin'
+@mixin p($val) {
+    padding-top: $val;
+    padding-bottom: $val;
+}
+
+// 'margin sides'
+@mixin ms($val) {
+    margin-left: $val;
+    margin-right: $val;
+}
+
+// 'padding'
+@mixin ps($val) {
+    padding-left: $val;
+    padding-right: $val;
+}
+
+// 'padding sides'
+@mixin dim($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+// 'dimensions'
+
+@mixin center($width, $height) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: $width;
+    height: $height;
+    margin-left: -($width/2);
+    margin-top: -($height/2);
+}
+
+@mixin texthide {
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin animation ($name, $duration: 1s, $delay: 0s, $iterations: 1, $direction: normal, $timing: ease, $fillmode: forwards) {
+    -webkit-animation: $name $duration $delay $iterations $direction $timing $fillmode;
+    -moz-animation: $name $duration $delay $iterations $direction $timing $fillmode;
+    -o-animation: $name $duration $delay $iterations $direction $timing $fillmode;
+    animation: $name $duration $delay $iterations $direction $timing $fillmode;
+}
+
+
+@include keyframes(pulse) {
+    0% {
+        opacity: 0;
+        background-position: center top;
+        @include background-size(0 auto);
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        @include background-size(75% auto);
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        background-position: center bottom;
+        @include background-size(0 auto);
+    }
+
+}
+
+
+body {
+    background-color: #0d74ff
+}
+
+.scroll-down {
+    margin: 0;
+    border: 2px solid #fff;
+    @include border-radius (100px);
+    @include center(100px, 100px);
+
+    a {
+        display: block;
+        opacity: 0;
+        @include border-radius (100px);
+        @include transition(all .4s ease);
+        @include texthide;
+        @include ms(auto);
+        @include dim(100%, 100%);
+        @include background-size(0 auto);
+        @include animation($name: pulse, $duration: 1.5s, $iterations: infinite);
+        background-image: url('https://jamesmuspratt.com/codepen/img/arrow-down.svg');
+        background-repeat: no-repeat;
+
+        &:before,
+        &:after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            @include dim(100%, 100%);
+            background: url('https://jamesmuspratt.com/codepen/img/arrow-down.svg') no-repeat center top;
+            @include background-size(100% auto);
+        }
+
+        &:before {
+            @include animation($delay: 0.25s, $name: pulse, $duration: 1.5s, $iterations: infinite);
+        }
+
+        &:after {
+            @include animation($delay: 0.50s, $name: pulse, $duration: 1.5s, $iterations: infinite);
+        }
+
+        &:hover {
+            // @include transform(scale(1));
+
+            background-color: rgba(0, 0, 0, .3);
+
+        }
+    }
+
+    // a
+}
+
+// .scroll-down
