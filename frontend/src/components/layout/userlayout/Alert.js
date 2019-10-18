@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { message, Button } from "antd";
+import uuid from "uuid";
+
+ const id = uuid.v4();
+
 const success = (msg) => {
   message.success(msg);
 };
@@ -18,17 +22,17 @@ const Alert = ({ error }) =>
   error.length > 0 &&
   error.map(alert => {
   if(alert.alertType==='danger')
-  return <span> {error1(alert.msg)}</span>
+  return <span key={id}> {error1(alert.msg)}</span>
   if(alert.alertType==='success')
-   return  <span> {success(alert.msg)}</span>;
+   return <span key={id}> {success(alert.msg)}</span>;
    else
-  return  <span> {warning()}</span>;
+  return <span key={id}> {warning()}</span>;
 
   }
   );
 
 Alert.propTypes = {
-  error: PropTypes.object.isRequired
+  error: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

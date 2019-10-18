@@ -20,6 +20,7 @@ const AppNavbar = ({ auth: { isAuthenticated, isUserAuthenticated,  isLoading, i
     go = '/';
   }
   var res1;
+  var res;
   const authLinks = (
    
      <SubMenu
@@ -40,7 +41,7 @@ const AppNavbar = ({ auth: { isAuthenticated, isUserAuthenticated,  isLoading, i
           <i className="fas fa-user" />{" "}
           <span className="hide-sm">Create Event</span>
         </Link></Menu.Item>
-              <Menu.Item key="5">  <Link to="/admin" onClick={logout} href="#!">
+              <Menu.Item key="6">  <Link to="/admin" onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{" "}
           <span className="hide-sm">Logout</span>
         </Link></Menu.Item>
@@ -49,7 +50,7 @@ const AppNavbar = ({ auth: { isAuthenticated, isUserAuthenticated,  isLoading, i
 
    const guestLinks = (
      <SubMenu
-       key="sub1"
+       key="sub2"
        title={
          <span>
            <Icon  type="user" />
@@ -141,7 +142,7 @@ const AppNavbar = ({ auth: { isAuthenticated, isUserAuthenticated,  isLoading, i
       {res1}
     </Menu>
   );
-var res 
+
   if(!isUserLoading)
   {
     if(isUserAuthenticated){

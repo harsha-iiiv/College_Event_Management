@@ -188,25 +188,6 @@ class EventForm extends Component {
             />
           </StepWizard>
 
-           <Button type="primary" onClick={ createEvent(
-            name,
-            date,
-            time,
-            venue,
-            Description,
-            type,
-            image,
-            logo,
-            organiserName,
-            role,
-            email,
-            ticketrequired,
-            ticketname,
-            isPaid,
-            ticketprice
-          )}>
-          Submit
-        </Button>
         </Modal>
       </div>
     );

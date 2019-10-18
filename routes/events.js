@@ -59,7 +59,8 @@ router.post("/",verifyadmin, async (req, res) => {
     const saveevnt = await Event.save();
     res.json(saveevnt);
   } catch (error) {
-    res.json(error); 
+    res.status(400).json({ errors: [{ msg: error.message }] });
+
   }
 });
 

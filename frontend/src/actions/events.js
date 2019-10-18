@@ -62,7 +62,7 @@ export const createEvent = (name,date,time,venue,Description,type,image,logo,org
   
   try {
     const res = await axios.post("http://localhost:8000/api/events", body, config);
-     console.log("TRing");
+     console.log(body);
 
     dispatch(setAlert("Event added successfully", "success"));
   dispatch({
@@ -73,15 +73,15 @@ export const createEvent = (name,date,time,venue,Description,type,image,logo,org
 
   }
    catch (err) {
-    const errors = "Something went wrong";
+    const errors = err.response.data.errors;
 
-    // if (errors) {
-    //  dispatch(setAlert(errors, "danger"));
-    // }
-
-    // dispatch({
-    //   type: EVENT_ERROR
-    // });
+   
+if (errors) {
+  errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+}
+    dispatch({
+      type: EVENT_ERROR
+    });
   }
 };
 

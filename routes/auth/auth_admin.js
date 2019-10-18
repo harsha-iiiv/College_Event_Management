@@ -23,7 +23,8 @@ router.post('/', async (req, res) => {
 
    //Validate login
   const {error} = loginValidate_admin(req.body);
-  if(error) return res.json(error);
+  if(error) return res.status(400).json({ errors: [{ msg: error.message }] });
+
 
 
    // Email checking here 

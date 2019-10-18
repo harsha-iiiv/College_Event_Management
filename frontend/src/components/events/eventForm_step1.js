@@ -28,7 +28,7 @@ class Step1Form extends Component {
             //   hintText="Enter Event date"
             //   floatingLabelText="Event Date"
             onChange={handleChange("date") }
-            defaultValue={values.date} placeholder="Date"
+            defaultValue={values.date} placeholder="MM/DD/YYYY"
           />
           <br />
           <br />

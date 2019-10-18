@@ -34,7 +34,10 @@ router.get("/", verify, async (req, res) => {
 router.post("/register", async (req, res) => {
   //Validate registration
   const { error } = registrationValidate(req.body);
-  if (error) return res.json(error);
+  if (error) return res
+                   .status(400)
+                   .json({ errors: [{ msg: error.message }] });
+
 
   //Duplicate Email checks here
   const email_exists = await User.findOne({ email: req.body.email });
@@ -71,7 +74,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   //Validate login
   const { error } = loginValidate(req.body);
-  if (error) return res.json(error);
+  if (error) res.status(400).json({ errors: [{ msg: error.message }] });
+
 
   // Email checking here
 
