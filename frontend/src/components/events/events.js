@@ -25,16 +25,17 @@ class Events extends Component {
 				events = <div className="nothing-to-show"><img src={loader} alt="Loading" className="App-loader" /></div>;
 			} else {
 				events = this.props.events.events.map((event, i) => (
-					
-					<Col
-						key={i}
-						sm={{ span: 20, offset: 2 }}
-						md={{ span: 10, offset: 1 }}
-						xl={{ span: 8, offset: 0 }}
-					>
-					<Row gutter={{ xs: 8, sm: 16, md: 24 }}><Eventcard event={event} /></Row>
-					</Col>
-				));
+          <Col
+            key={i}
+            sm={{ span: 20, offset: 2 }}
+            md={{ span: 10, offset: 1 }}
+            xl={{ span: 8, offset: 0 }}
+          >
+            <Row className="event-card" gutter={{ xs: 8, sm: 16, md: 24 }}>
+              <Eventcard className="event-card" event={event} />
+            </Row>
+          </Col>
+        ));
 			}
 		}
 

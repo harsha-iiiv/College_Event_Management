@@ -36,7 +36,7 @@ class HomeEvents extends Component {
 						md={{ span: 10, offset: 1 }}
 						xl={{ span: 8, offset: 0 }}
 					>
-						<Eventcard event={event} />
+						<Eventcard  event={event} />
 					</Col>
 				));
 			}
@@ -46,7 +46,7 @@ class HomeEvents extends Component {
 			<div className="home-page">
 				<div className="homepage-events">
 					<Element name="events">
-						<Row gutter={{ sm: 0, md: 4, xl: 8 }}>{events}</Row>
+						<Row className="event-card" gutter={{ sm: 0, md: 4, xl: 8 }}>{events}</Row>
 					</Element>
 				</div>
 			</div>

@@ -8,7 +8,8 @@ export default class Eventcard extends Component {
     return (
       <div>
         <Card
-          style={{ width: 300 }}
+          className="event-card-single"
+          style={{ width: 300, boxShadow: 'black'}}
           cover={
             <img
               alt="example"

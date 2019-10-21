@@ -4,7 +4,122 @@
 }
 
 
+.event-details{
+ background: linear-gradient(rgba(25, 2, 2, 0.211), rgba(17, 3, 3, 0.531)), url('https://cloudinary-res.cloudinary.com/image/upload/c_limit,h_540,w_770/f_auto,fl_lossy,q_auto/rzxcje2xocuicsxjevlviw.jpg');
+ background-repeat: no-repeat;
+ width: 100%;
+ background-size: cover;
+ align-content: center;
+ text-align: center;
+ height: 400px;
+ color: #ffffff;
+}
+.event-title{
+   color: #ffffff;
+   text-align: center;
 
+   font-size: 2.7rem;
+   letter-spacing: 0.3rem;
+   margin-top: 0.5rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding: 1rem;
+
+}
+.switch-wrapper {
+  position: relative;
+}
+
+/* .switch-wrapper > div {
+  position: absolute;
+} */
+.event-card-single:active {
+  transform: translateX(0) translateY(0);
+  box-shadow: none;
+  -webkit-transform: translateX(0) translateY(0);
+  -moz-transform: translateX(0) translateY(0);
+  -ms-transform: translateX(0) translateY(0);
+  -o-transform: translateX(0) translateY(0);
+}
+.event-card-single:hover {
+  transform: translateX(-2px) translateY(-2px);
+  box-shadow: 5px 5px 7px 0px #0c31e9;
+}
+
+.event-card{    
+  margin-bottom: 1rem; 
+  margin-top: 1rem;
+  transition-duration: 1s;
+  user-select: none;
+
+ 
+}
+.event-card-single {
+  border: solid 100px;
+}
+.event-venue{
+   color: #ffffff;
+   text-align: center;
+   font-size: 1rem;
+   letter-spacing: 0.2rem;
+   margin-top: 1.2rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding: 0.5rem;
+   -webkit-animation: moveInLeft 1s ease-in-out;
+}
+.event-date{
+   color: #ffffff;
+   text-align: center;
+
+   font-size: 1rem;
+   letter-spacing: 0.3rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding: 0.2rem;
+
+}
+.event-time{
+   color: #ffffff;
+   text-align: center;
+
+   font-size: 1rem;
+   letter-spacing: 0.3rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding: 0.2rem;
+
+}
+.event-dur{
+   color: #ffffff;
+   text-align: center;
+
+   font-size: 2rem;
+   letter-spacing: 0.3rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding: 0.2rem;
+
+}
+.dhead{
+   font-size: 1rem;
+   letter-spacing: 0.1rem;
+   animation: moveInLeft 1s ease-in-out;
+   padding-bottom: 0.8rem;
+   -webkit-animation: moveInLeft 1s ease-in-out;
+   margin-top: 2rem;
+   font-weight: 700;
+}
+
+.e-btn{
+
+  left: 47%;
+  margin-top: 2rem;
+
+}
+.event-reg-btn{
+  padding: 2rem;
+}
+
+.event-img{
+   width: 9%;
+
+}
 .App-loader {
   height: 10vh;
   

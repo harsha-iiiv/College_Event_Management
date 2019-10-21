@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getEventById, eventreg } from "../../actions/events";
 import Events_reg from './event_reg'
-import {Modal , Button} from 'antd'
+import {Modal , Button, Icon} from 'antd'
 
 import { setAlert } from './../../actions/alert';
 // useEffect(() => {
@@ -35,9 +35,11 @@ class Events_details extends Component {
   };
 
   handleOk = e => {
+    this.props.eventreg()
     this.setState({
       visible: false
     });
+
   };
 
   handleCancel = e => {
@@ -67,17 +69,72 @@ class Events_details extends Component {
   };
   
   render() {
+    const {
+      name,
+      date,
+      time,
+      venue,
+      Description,
+      type,
+      image,
+      logo,
+      organiserName,
+      role,
+      email,
+      ticketrequired,
+      ticketname,
+      isPaid,
+      ticketprice
+    } = this.props.events.event == null ? "wait" : this.props.events.event;
   
     return (
       <div className="container">
-        {this.props.events.event != null
-          ? this.props.events.event.name
-          : "Please wait"}
-        <Button type="primary" onClick={this.showModal}>
-            Open Modal
-        </Button>
+        <div className="event-details">
+          <div className="event-logo">
+            <img
+              src={
+                this.props.events.event != null
+                  ? "https://cloudinary-res.cloudinary.com/image/upload/c_limit,h_540,w_770/f_auto,fl_lossy,q_auto/rzxcje2xocuicsxjevlviw.jpg"
+                  : "Please wait"
+              }
+              alt="Logo will shown here"
+              className="event-img"
+            />
+          </div>
+          <div className="event-title">
+            <span>
+              {this.props.events.event != null ? name : "Please wait"}
+            </span>
+          </div>{" "}
+          <div className="event-venue">
+            <spna>
+              <Icon type="environment" />
+              <span>
+                {this.props.events.event != null ? venue : "Please wait"}
+              </span>
+            </spna>
+          </div>
+          <div className="event-date">
+            <span>
+              {this.props.events.event != null ? date : "Please wait"}{" "}
+            </span>
+          </div>
+          <div className="event-time">
+            <span>
+              {this.props.events.event != null ? time : "Please wait"}{" "}
+            </span>
+          </div>
+          <div className="event-dur">
+            <span> 3 hr </span>
+          </div>
+        </div>
+        <div classNam="event-reg-btn">
+          <Button type="primary" onClick={this.showModal} className="e-btn">
+            Register
+          </Button>
+        </div>
         <Modal
-          title="Basic Modal"
+          title="Event registration form"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
@@ -99,12 +156,53 @@ class Events_details extends Component {
                 ? this.props.events.event._id
                 : "Please wait"
             }
-            eventreg = {this.props.eventreg}
-            userID = {this.props.user != null ? this.props.user._id : "Please wait"}
+            eventreg={this.props.eventreg}
+            userID={
+              this.props.user != null ? this.props.user._id : "Please wait"
+            }
           />
-           
-          <Button type="primary">Submit</Button>
+
+         
         </Modal>
+        <div className="event-des">
+          <div className="e-des-title dhead">
+            <span>Event Descriptions:</span>
+          </div>
+          <span>
+            {this.props.events.event != null ? Description : "Please wait"}
+          </span>
+        </div>
+        <div className="event-timig">
+          <div className="e-timing-title dhead">
+            <span>Event Timing:</span>
+          </div>
+          <span>{this.props.events.event != null ? date : "Please wait"}</span>
+        </div>
+        <div className="event-org">
+          <div className="e-org-title dhead">
+            <span>Oragaiser details:</span>
+          </div>
+          <span>
+            {this.props.events.event != null ? organiserName : "Please wait"}
+          </span>
+          <span>{this.props.events.event != null ? role : "Please wait"}</span>
+          <span>{this.props.events.event != null ? email : "Please wait"}</span>
+        </div>
+        <div className="event-note">
+          <div className="e-note-title dhead">
+            <span>Things that you should know:</span>
+          </div>
+          <span>
+            {this.props.events.event != null
+              ? "Get your ticket before your events get expired!"
+              : "Please wait"}
+          </span>
+        </div>
+        <div className="event-sub">
+          <div className="dhead">
+            <span>Get updated regarding College Events!</span>
+          </div>
+        </div>
       </div>
     );
   }
