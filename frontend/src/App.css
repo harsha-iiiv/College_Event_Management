@@ -3,7 +3,23 @@
 
 }
 
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#1890FF;
+  
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
 
+.my-float{
+	margin-top:22px;
+}
 .event-details{
  background: linear-gradient(rgba(25, 2, 2, 0.211), rgba(17, 3, 3, 0.531)), url('https://cloudinary-res.cloudinary.com/image/upload/c_limit,h_540,w_770/f_auto,fl_lossy,q_auto/rzxcje2xocuicsxjevlviw.jpg');
  background-repeat: no-repeat;
@@ -13,6 +29,20 @@
  text-align: center;
  height: 400px;
  color: #ffffff;
+}
+.table-responsive{
+  width: 600px;
+  height: 500px;
+  margin: 5px;
+  padding: 3px;
+}
+.event-guide-head{
+  font-size: 13px;
+  background-color: #becbed;
+  margin: 1px 25px 1px;
+  height: 35px;
+  padding: 1px;
+  display: flex;
 }
 .event-title{
    color: #ffffff;

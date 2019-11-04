@@ -4,6 +4,7 @@ const Events = require('./routes/events');
 const Event_reg = require('./routes/event_reg');
 const Users = require('./routes/auth/auth_user');
 const ForgotPassword = require('./routes/auth/forgotPassword');
+const Resetpass = require('./routes/auth/resetpass');
 const Admin = require('./routes/auth/auth_admin');
 const bodyParser = require('body-parser');
 const connectDB = require('./config/db_connect.js');
@@ -21,7 +22,8 @@ app.get('/', (req,res, next) =>{
  app.use('/api/user',Users);
  app.use('/api/user/event_reg',Event_reg);
  app.use('/api/admin',Admin);
- app.use('/', ForgotPassword);
+ app.use('/api/user', ForgotPassword);
+ app.use('/api/user/reset', Resetpass);
  
 //  app.use('/api/event_reg',Event_reg);
 // app.get('/', (req,res,err) =>{

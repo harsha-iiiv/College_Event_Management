@@ -17,7 +17,7 @@ class RegistrationForm extends React.Component {
       if (!err) {
         console.log("Received values of form: ", values);
          const {name, email, phone, event} = values
-         this.props.eventreg(name, email, phone, this.props.eID, this.props.userID,);
+         this.props.eventreg(name, email, phone, this.props.eID);
           }
     });
   };
@@ -158,8 +158,11 @@ class RegistrationForm extends React.Component {
             </AutoComplete>
           )}
         </Form.Item>
-
-      
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            Register
+          </Button>
+        </Form.Item>
       </Form>
     );
   }

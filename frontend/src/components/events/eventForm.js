@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { createEvent } from "./../../actions/events";
+import Event_guide from "./create_events_guide";
 import Step2Form from "./eventForm_step2";
 import Step1Form from "./eventForm_step1";
 import Step3Form from "./eventForm_step3";
@@ -17,6 +18,7 @@ import { Modal, Button } from "antd";
 class EventForm extends Component {
   state = {
     step: 1,
+    eic:'',
     name: "",
     date: "",
     time: "",
@@ -58,23 +60,23 @@ class EventForm extends Component {
    isPaid,
    ticketprice
  } = this.state;
-  this.props.createEvent(
-      name,
-      date,
-      time,
-      venue,
-      Description,
-      type,
-      image,
-      logo,
-      organiserName,
-      role,
-      email,
-      ticketrequired,
-      ticketname,
-      isPaid,
-      ticketprice
-    );
+  // this.props.createEvent(
+  //     name,
+  //     date,
+  //     time,
+  //     venue,
+  //     Description,
+  //     type,
+  //     image,
+  //     logo,
+  //     organiserName,
+  //     role,
+  //     email,
+  //     ticketrequired,
+  //     ticketname,
+  //     isPaid,
+  //     ticketprice
+  //   );
     
     this.setState({
       visible: false
@@ -112,6 +114,7 @@ class EventForm extends Component {
 
   render() {
     const {
+      eic,
       name,
       date,
       time,
@@ -129,6 +132,7 @@ class EventForm extends Component {
       ticketprice
     } = this.state;
     const values = {
+      eic,
       name,
       date,
       time,
@@ -148,14 +152,16 @@ class EventForm extends Component {
 
     return (
       <div className="container">
-        <Button className="button" type="primary" onClick={this.showModal}>
-          Create Event
+       <Event_guide/>
+        <Button className="button" type="primary" onClick={this.showModal} style={{margin: '0% 0% 50% 50%'}}>
+          Proceed
         </Button>
         <Modal
           title="Basic Modal"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          footer={[]}
         >
           <StepWizard>
             <Step1Form
@@ -185,9 +191,9 @@ class EventForm extends Component {
               values={values}
               nextStep={this.nextStep}
               prevStep={this.previousStep}
+              createEvent={this.props.createEvent}
             />
           </StepWizard>
-
         </Modal>
       </div>
     );

@@ -36,6 +36,7 @@
     "tsutils": "^3.17.1",
     "uuid": "^3.3.3"
   },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -57,4 +58,5 @@
       "last 1 safari version"
     ]
   }
+ 
 }

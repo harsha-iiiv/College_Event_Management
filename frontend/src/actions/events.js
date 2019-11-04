@@ -9,12 +9,12 @@ import {
   EVENTS_LOADING,
   EVENT_REG
 } from "./types";
-
+axios.defaults.baseURL = "http://localhost:8000";
 //GET EVENTS
 export const getEvents = () => async dispatch => {
   try {
     dispatch(eventsLoading());
-    const res = await axios.get("http://localhost:8000/api/events");
+    const res = await axios.get("/api/events");
 
     dispatch({
       type: GET_EVENTS,
@@ -23,13 +23,13 @@ export const getEvents = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: EVENT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      payload: "error"
     });
   }
 };
 export const getEventById = eventId => async dispatch => {
   try {
-    const res = await axios.get(`http://localhost:8000/api/events/${eventId}`);
+    const res = await axios.get(`/api/events/${eventId}`);
    console.log(res);
    
     dispatch({
@@ -50,18 +50,18 @@ export const eventsLoading = () =>{
   }
 }
 
-export const createEvent = (name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice) => async (dispatch) => {
+export const createEvent = (eic, name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
   
-  const body = JSON.stringify({ name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice });
-  console.log("hello");
+  const body = JSON.stringify({eic, name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice });
+  console.log(body);
   
   try {
-    const res = await axios.post("http://localhost:8000/api/events", body, config);
+    const res = await axios.post("/api/events", body, config);
      console.log(body);
 
     dispatch(setAlert("Event added successfully", "success"));
@@ -84,21 +84,51 @@ if (errors) {
     });
   }
 };
+export const editEvent = (id, eic, name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  
+  const body = JSON.stringify({eic, name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice });
+  console.log('hhh');
+  
+  try {
+    const res = await axios.put(`/api/events/${id}`, body, config);
+
+    dispatch(setAlert("Event updated successfully", "success"));
+   
+ 
+
+  }
+   catch (err) {
+    const errors = err.response.data.errors;
+
+   
+if (errors) {
+  errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+}
+    dispatch({
+      type: EVENT_ERROR
+    });
+  }
+};
 
 // Event registrion
 
-export const eventreg = (name, email, phone, event, user)=> async (dispatch) =>{
+export const eventreg = (name, email, phone, event)=> async (dispatch) =>{
   const config = {
     headers: {
       "Content-Type" : "application/json" 
     }
   }
 
-  const body = JSON.stringify({name, email, phone, event , user });
+  const body = JSON.stringify({name, email, phone, event });
   console.log(body);
   
   try {
-        const res = await axios.post("http://localhost:8000/api/user/event_reg", body, config);
+        const res = await axios.post("/api/user/event_reg", body, config);
 
     dispatch(setAlert("Event registration successfully", "success"));
   dispatch({

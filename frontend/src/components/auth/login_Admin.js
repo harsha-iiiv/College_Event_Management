@@ -40,7 +40,7 @@ const Login = ({ login, logout, isAuthenticated }) => {
 
 
   const testLog = (
-    <div class="container adminlogin">
+    <div className="container adminlogin">
       <Form onSubmit={e => onSubmit(e)} className="login-form">
         <Form.Item className="fitem" >
           <Input

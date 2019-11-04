@@ -6,9 +6,9 @@ var ObjectId = require("mongodb").ObjectID;
 //POST EVENT REGISTRAYION FORM 
 
 router.post('/', verify, async (req, res) => {
-  const { name, email, phone, event, user } = req.body;
+  const { name, email, phone, event } = req.body;
   
-  const already_reg = await evenetregistration.find({ user: ObjectId(user) });
+  const already_reg = await evenetregistration.find({ user: ObjectId(req.user._id) });
    var chek = 0
          
          var i;
@@ -37,7 +37,7 @@ router.post('/', verify, async (req, res) => {
     email,
     phone,
     event,
-    user
+    user : req.user._id
 
   });
 

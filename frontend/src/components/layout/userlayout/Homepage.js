@@ -9,7 +9,7 @@ import e1 from "../../../img/event_2.jpg";
 import e2 from "../../../img/event_3.jpg";
 import e3 from "../../../img/event_1.jpg";
 import exe from "../../../img/scroll-bg.png";
-import HomeEvents from "../../events/home_events";
+import HomeEvents from "../../events/events";
 const { Meta } = Card;
 
 

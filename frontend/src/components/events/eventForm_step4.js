@@ -23,7 +23,6 @@ class Step4Form extends Component {
   };
   render() {
     const { values, handleChange } = this.props;
-         const { name,date,time,venue,Description,type,image,logo,organiserName,role,email,ticketrequired,ticketname,isPaid,ticketprice } = this.props.values;
 
     return (
       <React.Fragment>

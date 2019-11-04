@@ -17,19 +17,23 @@ const warning = () => {
   message.warning("Something went wrong");
 };
 
-const Alert = ({ error }) =>
-  error !== null &&
+const Alert = ({ error }) =>{ 
+  
+  var ren;
+   error !== null &&
   error.length > 0 &&
   error.map(alert => {
   if(alert.alertType==='danger')
   return <span key={id}> {error1(alert.msg)}</span>
   if(alert.alertType==='success')
-   return <span key={id}> {success(alert.msg)}</span>;
+   ren =  <span key={id}> {success(alert.msg)}</span>;
    else
-  return <span key={id}> {warning()}</span>;
+   ren =  <span key={id}> {warning()}</span>;
 
   }
   );
+  return <div>{ren}</div>;}
+ 
 
 Alert.propTypes = {
   error: PropTypes.array.isRequired

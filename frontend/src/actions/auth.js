@@ -8,6 +8,8 @@ import {
   LOGIN_SUCCESS,
   ULOGIN_SUCCESS,
   LOGIN_FAIL,
+  RESETLINK_SUCCESS,
+  RESETLINK_FAIL,
   ULOGIN_FAIL,
   LOGOUT,
   REGISTER_SUCCESS,
@@ -16,6 +18,8 @@ import {
 } from "./types";
 import setUserToken from "../utils/setAdminToken";
 import setNormalUserToken from "../utils/setUserToken";
+axios.defaults.baseURL = "http://localhost:8000";
+
 
 // check token and Load User 
 export const loadUser = () => async (dispatch) => {
@@ -27,7 +31,7 @@ export const loadUser = () => async (dispatch) => {
 
   
   try {
-    const res = await axios.get("http://localhost:8000/api/admin");
+    const res = await axios.get("/api/admin");
 
     dispatch({
       type: USER_LOADED,
@@ -49,7 +53,7 @@ export const loadNormalUser = () => async (dispatch) => {
 
   
   try {
-    const res = await axios.get(`http://localhost:8000/api/user`);
+    const res = await axios.get(`/api/user`);
 
     dispatch({
       type: NUSER_LOADED,
@@ -75,7 +79,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post("http://localhost:8000/api/user/register", body, config);
+    const res = await axios.post("/api/user/register", body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -83,7 +87,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     });
     console.log(res.data);
     
-
+    dispatch(setAlert('Registered successfully', 'success'))
     dispatch(loadNormalUser());
   } catch (err) {
     const errors = err.response.data.errors;
@@ -100,6 +104,86 @@ export const register = ({ name, email, password }) => async dispatch => {
 };
 //create evnet
 
+//Forgot password 
+// @access Public
+// @route api/forgotpassword
+
+
+
+export const resetpassword = (password, token) => async dispatch =>{
+ 
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    const body = JSON.stringify({ password });
+
+    try {
+      const res = await axios.put(
+        `/api/user/reset/${token}`,
+        body,
+        config
+      );
+
+      dispatch({
+        type: RESETLINK_SUCCESS,
+        payload: res
+      });
+
+      dispatch(setAlert('Reset password successfully', 'success'));
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: RESETLINK_FAIL,
+       
+      });
+    }
+
+}
+export const forgotpassword = (email) => async dispatch =>{
+ 
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    const body = JSON.stringify({ email });
+
+    try {
+      const res = await axios.post(
+        "/api/user/forgotPassword",
+        body,
+        config
+      );
+
+      dispatch({
+        type: RESETLINK_SUCCESS,
+        payload: res
+      });
+
+      dispatch(setAlert('Reset link sent successfully', 'success'));
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      }
+
+      dispatch({
+        type: RESETLINK_FAIL,
+       
+      });
+    }
+
+}
 
 
 // Login User
@@ -113,7 +197,7 @@ export const login = (name, password) => async dispatch => {
   const body = JSON.stringify({ name, password });
 
   try {
-    const res = await axios.post("http://localhost:8000/api/admin", body, config);
+    const res = await axios.post("/api/admin", body, config);
    
 
   dispatch({
@@ -145,7 +229,7 @@ export const userlogin = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("http://localhost:8000/api/user/login", body, config);
+    const res = await axios.post("/api/user/login", body, config);
     
 
   dispatch({

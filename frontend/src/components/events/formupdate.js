@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Button} from 'antd'
 
-class Success extends Component {
+class Formupdate extends Component {
   
 
   continue = e => {
@@ -13,6 +13,7 @@ class Success extends Component {
     e.preventDefault();
     this.props.prevStep();
   };
+   
   handleSubmit = () =>{
         const {
           eic,
@@ -33,7 +34,10 @@ class Success extends Component {
           ticketprice
         } = this.props.values;
 
-    this.props.createEvent(
+      console.log(this.props.finalvalues);
+      
+    this.props.editEvent(
+      this.props.event1._id,
       eic,
       name,
       date,
@@ -49,12 +53,10 @@ class Success extends Component {
       ticketrequired,
       ticketname,
       isPaid,
-      ticketprice,
-
- 
+      ticketprice
     );
   }
-
+    
   render() {
       const {
         eic,
@@ -73,7 +75,7 @@ class Success extends Component {
         ticketname,
         isPaid,
         ticketprice
-      } = this.props.values;
+      } = this.props.finalvalues;
     return (
       <React.Fragment>
         <h4>Please check the details once before submitting.</h4>
@@ -144,4 +146,4 @@ class Success extends Component {
     );
   }
 }
-export default Success; 
+export default Formupdate; 

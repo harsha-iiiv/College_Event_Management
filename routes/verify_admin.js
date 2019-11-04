@@ -9,7 +9,10 @@ module.exports = function(req, res, next){
 
     try {
         const verified = jwt.verify(token, process.env.ADMIN_TOKEN_SECRET);
-        req.user = verified;
+        req.admin = verified;
+      
+        console.log(req.admin);
+        
         next();
     } catch (error) {
         res.status(400).send('Not valid token');

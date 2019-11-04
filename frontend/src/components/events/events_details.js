@@ -3,45 +3,56 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getEventById, eventreg } from "../../actions/events";
 import Events_reg from './event_reg'
+import EditEventForm from "./editEventForm";
+
 import {Modal , Button, Icon} from 'antd'
+import { editEvent } from "../../actions/events";
+
 
 import { setAlert } from './../../actions/alert';
 // useEffect(() => {
   //   getEventById(match.params.eventID);
   // }, [getEventById, match.params.eventID]);
 class Events_details extends Component {
- 
-  componentDidMount() { 
-   const  {getEventById} = this.props;
+  componentDidMount() {
+    const { getEventById } = this.props;
     getEventById(this.props.match.params.eventID);
-     
   }
   
+showModal1 = () => {
+ 
+  this.setState({
+    open: true
+  });
+};
+handleCancel1 = e => {
+  this.setState({
+    open: false
+  });
+};
   state = {
-    
     name: "jlnd",
-    visible: false
+    loading: false,
+    visible: false,
+    open: false
   };
   showModal = () => {
-    
-    if (this.props.isUserAuthenticated){
+    if (this.props.isUserAuthenticated) {
       this.setState({
         visible: true
       });
-    }
-    else{
-       this.props.setAlert("Please sign in to register", "danger")
+    } else {
+      this.props.setAlert("Please sign in to register", "danger");
     }
   };
 
   handleOk = e => {
-    this.props.eventreg()
-    this.setState({
-      visible: false
-    });
-
+   this.setState({ loading: true });
+   setTimeout(() => {
+     this.setState({ loading: false, visible: false });
+   }, 3000);
   };
-
+   
   handleCancel = e => {
     this.setState({
       visible: false
@@ -67,7 +78,7 @@ class Events_details extends Component {
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
-  
+
   render() {
     const {
       name,
@@ -86,7 +97,12 @@ class Events_details extends Component {
       isPaid,
       ticketprice
     } = this.props.events.event == null ? "wait" : this.props.events.event;
-  
+
+    const edit =   <a onClick= {this.showModal1} className="float">
+                   <Icon className= 'my-float' type="edit" />
+                    </a>
+                    
+
     return (
       <div className="container">
         <div className="event-details">
@@ -133,11 +149,17 @@ class Events_details extends Component {
             Register
           </Button>
         </div>
+       <div className = 'edit-btn'>
+        {this.props.isAuthenticated ? edit : ''}
+        <EditEventForm  event1 = {this.props.events.event == null ? "wait" : this.props.events.event} open = {this.state.open} handleCancel = {this.handleCancel1} />
+
+       </div>
         <Modal
           title="Event registration form"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          footer={[]}
         >
           <Events_reg
             name={
@@ -161,8 +183,6 @@ class Events_details extends Component {
               this.props.user != null ? this.props.user._id : "Please wait"
             }
           />
-
-         
         </Modal>
         <div className="event-des">
           <div className="e-des-title dhead">
@@ -212,9 +232,10 @@ class Events_details extends Component {
 const mapStateToProps = state => ({
   events: state.events,
   user: state.auth.normalUser,
-  isUserAuthenticated: state.auth.isUserAuthenticated
+  isUserAuthenticated: state.auth.isUserAuthenticated,
+  isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(
   mapStateToProps,
-  { getEventById, setAlert, eventreg }
+  { getEventById, setAlert, eventreg, editEvent }
 )(Events_details);

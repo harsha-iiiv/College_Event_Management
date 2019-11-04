@@ -3,55 +3,76 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
+import { Row, Col, Card, Icon, Avatar, Button } from "antd";
+const { Meta } = Card;
 
 const Admin = ({
   auth: { isAuthenticated, isLoading},
   logout,
 }) => {
-  // const authLinks = (
-  //   <ul>
-  //     <li>
-  //       <Link to="/admin/dashboard_admin">
-  //         <i className="fas fa-user" />{" "}
-  //         <span className="hide-sm">Dashboard</span>
-  //       </Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/admin/create_event">
-  //         <i className="fas fa-user" />{" "}
-  //         <span className="hide-sm">Create Event</span>
-  //       </Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/admin" onClick={logout} href="#!">
-  //         <i className="fas fa-sign-out-alt" />{" "}
-  //         <span className="hide-sm">Logout</span>
-  //       </Link>
-  //     </li>
-  //   </ul>
-  // );
- 
-  // const guestLinks = (
-  //   <ul>
-  //     <li>
-  //       <Link to="/events">Events</Link>
-  //     </li>
-  //     <li>
-  //       <Link to="/admin/login">Login</Link>
-  //     </li>
-  //   </ul>
-  // );
- 
-  // var res;
-  // if (!isLoading) {
-  //   if (isAuthenticated) {
-  //     res = authLinks;
-  //   } else res = guestLinks;
-  // }
+  var go;
+  
+    
+  if(isAuthenticated)
+   go = '/admin/create_event'
+   else
+   go = '/admin/login'
 
   return (
     <div className="container">
-      <h3> This is where you can manage events</h3>
+      <h4 className="text-center" >COLLEGE FEST MANAGEMENT PLATFORM</h4>
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col className="gutter-row" span={8}>
+          <div className="gutter-box">
+            <Card
+              hoverable
+              style={{ width: 240 }}
+              cover={
+                <img src="https://img.icons8.com/clouds/500/000000/admin-settings-male.png" />
+              }
+            >
+              <Meta
+                title="EASY MANAGEMENT"
+                description="smooth registration process with payment gateway."
+              />
+            </Card>
+          </div>
+        </Col>
+        <Col className="gutter-row" span={8}>
+          <div className="gutter-box">
+            <Card
+              hoverable
+              style={{ width: 240 }}
+              cover={
+                    <img src="https://img.icons8.com/clouds/200/000000/qr-code.png" />
+
+              }
+            >
+              <Meta
+                title="PAPERLESS TICKETING"
+                description="QR Code integration on the tickets provided"
+              />
+            </Card></div>
+            </Col>
+            <Col className="gutter-row" span={8}>
+            <div className="gutter-box">
+            <Card
+              hoverable
+              style={{ width: 240 }}
+              cover={
+                  <img src="https://img.icons8.com/clouds/200/000000/mailbox-closed-flag-down.png" />
+              }
+            >
+              <Meta title="EMAIL NOTIFICATIONS" description="Event announcements and event updates" />
+            </Card>
+          </div>
+        </Col>
+      </Row>
+       <Link to = {go}>
+      <Button  className="button" type="primary" style={{margin: '10% 0% 50% 50%'}}>
+       Create Event here 
+      </Button>
+      </Link>
     </div>
   );
 };

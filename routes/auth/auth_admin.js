@@ -9,7 +9,11 @@ const decode = require('jwt-decode')
 
 router.get('/', verifyAdmin, async (req, res) => {
   try {
-    const user = await User.findById("5d811deba9f84141612cb32b");
+    
+    
+    const user = await User.findById(req.admin._id).select("-password");
+    console.log(user);
+    
     res.json(user);
   } catch (err) {
     console.error(err.message);

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 
-const Eventschema = new mongoose.Schema({
+const Eventschema = new mongoose.Schema({ 
+    admin: { type: mongoose.Schema.Types.ObjectId, ref: 'admins'},
+    eic : { type: String, required: true, index: {unique: true, dropDups: true}},
     name : { type: String, required: true},
     date : { type: Date, required: true},
     time: { type: String, required: true},
@@ -19,7 +21,7 @@ const Eventschema = new mongoose.Schema({
     ticketprice: { type:Number, default: 0},
 },
 {
-    timestamps: true
+    timestamps: true 
 });
 
 module.exports = mongoose.model('Events', Eventschema);

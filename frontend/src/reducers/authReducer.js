@@ -1,19 +1,20 @@
-import {REGISTER_SUCCESS
-,REGISTER_FAIL
-,USER_LOADED 
-,NUSER_LOADED 
-,USER_LOADING
-,AUTH_ERROR 
-,UAUTH_ERROR 
-,LOGIN_SUCCESS  
-,ULOGIN_SUCCESS  
-,ULOGIN_FAIL
-,LOGIN_FAIL
-,LOGOUT
-,USER_LOGOUT
- 
-
-} from '../actions/types'
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  NUSER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
+  UAUTH_ERROR,
+  LOGIN_SUCCESS,
+  RESETLINK_SUCCESS,
+  RESETLINK_FAIL,
+  ULOGIN_SUCCESS,
+  ULOGIN_FAIL,
+  LOGIN_FAIL,
+  LOGOUT,
+  USER_LOGOUT
+} from "../actions/types";
 
 const initialState = {
     token : localStorage.getItem('token'),
@@ -23,7 +24,8 @@ const initialState = {
     isLoading: false,
     isUserLoading: false,
     user: null,
-    normalUser: null
+    normalUser: null,
+    resetLink : false
 };
 
 export default function(state = initialState, action){
@@ -82,6 +84,16 @@ export default function(state = initialState, action){
           isLoading: false,
           user: null
         };
+      case RESETLINK_SUCCESS:
+        return {
+          ...state,
+          resetLink : true
+        }  
+      case RESETLINK_FAIL:
+        return {
+          ...state,
+          resetLink: false
+        }  
       case UAUTH_ERROR:
       case REGISTER_FAIL:
       case ULOGIN_FAIL:
