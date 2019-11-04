@@ -22,6 +22,28 @@ class Step2Form extends Component {
           <Radio value={"Dance"}>Dance</Radio>
           <Radio value={"Drama"}>Drama</Radio>
           <Radio value={"Sports"}>Sports</Radio>
+          <Radio value={"Workshop"}>Workshop</Radio>
+          <Radio value={"Management"}>Management</Radio>
+          <Radio value={"Fun & Other Events"}>Fun and Other Events</Radio>
+          <Radio value={"Online Events"}>Online Events</Radio>
+          <Radio value={"Hobbies & Interest"}>Hobbies annd Interest</Radio>
+          <Radio value={"Concert"}>Concert</Radio>
+          <Radio value={"Seminars"}>Seminars</Radio>
+          <Radio value={"Gaming"}>Gaming</Radio>
+          <Radio value={"Conferences"}>Conferences</Radio>
+          <Radio value={"Travel"}>Travel</Radio>
+          <Radio value={"General"}>General</Radio>
+          <Radio value={"Alumni"}>Alumni</Radio>
+          <Radio value={"Others"}>Others</Radio>
+          <Radio value={"Symposium"}>Symposium</Radio>
+          <Radio value={"TEDx"}>TEDx</Radio>
+          <Radio value={"Technical"}>Technical</Radio>
+          <Radio value={"Entrepreneurship"}>Entrepreneurship</Radio>
+          <Radio value={"Literature"}>Literature</Radio>
+          <Radio value={"Accommodation"}>Accommodation</Radio>
+          <Radio value={"Departmental"}>Departmental</Radio>
+          <Radio value={"Model United Nations"}>Model United Nations</Radio>
+          <Radio value={"Merchandise"}>Merchandise</Radio>
         </Radio.Group>
         <br />
         <br />
