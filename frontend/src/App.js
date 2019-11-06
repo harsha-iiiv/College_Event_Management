@@ -52,7 +52,7 @@ class App extends Component {
                    background: "#ffff",
                    padding: 2,
                    width: "100%",
-                   minHeight: 880,
+                   
                    marginTop:64
                  }}
                >
