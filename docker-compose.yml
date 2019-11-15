@@ -15,8 +15,8 @@ services:
     ports:
       - 3001:8000
     environment:
-       - EMAIL_ADDRESS: "cem.iiitv@gmail.com"
-       - EMAIL_PASSWORD: "CEM@201752039"
+       - EMAIL_ADDRESS= "cem.iiitv@gmail.com"
+       - EMAIL_PASSWORD= "CEM@201752039"
     volumes:
       - ./express-server:/usr/src/server_app
       - node_modules_b:/usr/src/server_app/node_modules
