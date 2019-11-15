@@ -1,12 +1,12 @@
 FROM node:12-alpine 
 
-RUN mkdir -p /usr/src/server_app 
+RUN mkdir -p /usr/src 
 
-WORKDIR /usr/src/server_app 
+WORKDIR /usr/src 
 
-COPY package.json /usr/src/server_app
+COPY package.json /usr/src
 
-COPY package-lock.json ./usr/src/server_app
+COPY package-lock.json ./usr/src
 
 
 RUN npm install
