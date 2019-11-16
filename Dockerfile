@@ -1,13 +1,6 @@
 FROM node:12
 
-RUN mkdir -p /usr/src 
-
-WORKDIR /usr/src 
-
-COPY package.json /usr/src
-
-COPY package-lock.json ./usr/src
-
+COPY . .
 
 RUN npm install
 
