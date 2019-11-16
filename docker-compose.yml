@@ -25,7 +25,8 @@ services:
 
   mongo:
     image: mongo
-    
+    environment:
+      - DB_CONNECTIONS = "mongodb://localhost:27017/harsha"
     volumes:
       - data:/data/db
     ports:
