@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const events= require("../models/event");
 const User = require("../models/admin");
-
+const evenetregistration = require("../models/event_reg");
 const verifyadmin = require("./verify_admin");
-
+const nodemailer = require("nodemailer");
+require("dotenv/config"); 
 
 
 //Get ALL POOST public
@@ -175,4 +176,77 @@ router.get("/:postID",  async (req, res) => {
     
 })
 
+
+router.post("/announce", async (req, res) => {
+  if (req.body.id === "") {
+    return res.status(400).json({ errors: [{ msg: "email required" }] });
+  }
+  if (req.body.msg === "") {
+    return res.status(400).json({ errors: [{ msg: "Message required" }] });
+  }
+  console.error(req.body.id);
+  const event_reg = await evenetregistration.find({ event: req.body.id });
+  if (!event_reg)
+    return res.status(400).json({ errors: [{ msg: "Events not exists" }] });
+    var emails = []
+    event_reg.forEach((item) => {
+      emails.push(item.email)
+    })
+    
+     
+  try {
+    // const token = crypto.randomBytes(20).toString("hex");
+
+    // await user.update({
+    //   resetPasswordToken: token,
+    //   resetPasswordExpires: Date.now() + 360000
+    // });
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+
+      secure: false,
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD
+      }
+    });
+    
+   
+    console.log("sending mail");
+ emails.forEach((to, i, array)=>{
+ const mailOptions = {
+   from: "cem.iiitv@gmail.com",
+   
+   subject: "Event Announcement",
+   text:
+     "You are receiving this because you (or someone else) have registered event.\n\n" +
+     
+     "Please check the website to view updated event details .\n"
+ };
+   mailOptions.to = to
+     transporter.sendMail(mailOptions, (err, response) => {
+       if (err) {
+         console.error("there was an error: ", err);
+       } else {
+         console.log("here is the res: ", response);
+         res.status(200).json("recovery email sent");
+       }
+        // if (i === emails.length - 1) {
+        //      mailOptions.transport.close();
+        //    }
+
+     });
+ })
+   
+  } catch (err) {
+    console.error("there was an error: ", err);
+  }
+});
+
 module.exports = router;
+
+
+

@@ -11,6 +11,10 @@ import ULogin from '../auth/login';
 import Alert from '../layout/userlayout/Alert';
 import Home from '../layout/userlayout/Homepage';
 import Admin_Dashboard from '../dashboard/admin_dashboard';
+import DeleteEvent from '../events/AnnouceEvent';
+import Dashboard from '../dashboard/dashboard';
+import ChartRenderer from '../dashboard/ChartRenderer'
+import PurChartRenderer from '../dashboard/Purchased'
 // import EditProfile from '../profile-forms/EditProfile';
 // import Event from '../events/event_card';
 import Events from '../events/events';
@@ -81,6 +85,23 @@ import Eventform from '../events/eventForm'
                 exact
                 path="/admin/dashboard_admin"
                 component={Admin_Dashboard}
+              />
+              <Route
+                exact
+                path="/admin/dashboard_admin/announce"
+                component={DeleteEvent}
+              />
+
+              <UserPrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/admin/dashboard_admin/analytics"
+                component={ChartRenderer}
+              />
+              <PrivateRoute
+                exact
+                path="/admin/dashboard_admin/purchased_tickets"
+                component={PurChartRenderer}
               />
 
               <PrivateRoute

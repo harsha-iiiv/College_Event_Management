@@ -13,7 +13,7 @@ axios.defaults.baseURL = "http://localhost:8000";
 //GET EVENTS
 export const getEvents = () => async dispatch => {
   try {
-    dispatch(eventsLoading());
+    dispatch(eventsLoading()); 
     const res = await axios.get("/api/events");
 
     dispatch({
@@ -150,6 +150,36 @@ export const eventreg = (name, email, phone, event)=> async (dispatch) =>{
     });
   }
 }
+export const announceEvent = (id, msg) => async dispatch => {
+         const config = {
+           headers: {
+             "Content-Type": "application/json"
+           }
+         };
+
+         const body = JSON.stringify({ id, msg : "Please visit website for new changes" });
+         console.log(body);
+
+         try {
+           const res = await axios.post("/api/events/announce", body, config);
+
+           dispatch(setAlert("Event announced successfully", "success"));
+           dispatch({
+             type: EVENT_REG,
+             payload: res.data
+           });
+         } catch (err) {
+           const errors = "Error";
+
+           
+             dispatch(setAlert(errors, "danger"))
+           
+           dispatch({
+             type: EVENT_ERROR,
+             payload: { msg: "sorry" }
+           });
+         }
+       };
 
 
 //ADD EVENTS
@@ -177,3 +207,36 @@ export const eventreg = (name, email, phone, event)=> async (dispatch) =>{
 //     });
 //   }
 // };
+
+//delete events
+
+
+export const deleteEvent = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  
+  console.log('hhh');
+  
+  try {
+    const res = await axios.delete(`/api/events/${id}`);
+
+    dispatch(setAlert("Event Deleted successfully", "success"));
+   
+ 
+
+  }
+   catch (err) {
+    const errors = err.response.data.errors;
+
+   
+if (errors) {
+  errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+}
+    dispatch({
+      type: EVENT_ERROR
+    });
+  }
+};

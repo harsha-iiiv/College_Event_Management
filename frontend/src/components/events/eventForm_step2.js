@@ -18,58 +18,61 @@ class Step2Form extends Component {
     return (
       <React.Fragment>
         <Radio.Group onChange={handleChange("type")} defaultValue={values.type}>
-          <Col>
-            <Row gutter={16}>
-              <Col
-                sm={{ span: 20, offset: 2 }}
-                md={{ span: 10, offset: 1 }}
-                xl={{ span: 8, offset: 0 }}
-              >
-                
-                <Radio value={"Music"}>Music</Radio>
-                <Radio value={"Dance"}>Dance</Radio>
-                <Radio value={"Drama"}>Drama</Radio>
-              </Col>
-            </Row>
-            <Row>
-              <Radio value={"Sports"}>Sports</Radio>
-              <Radio value={"Workshop"}>Workshop</Radio>
-              <Radio value={"Management"}>Management</Radio>
-            </Row>
-            <Row>
-              <Radio value={"Fun & Other Events"}>Fun and Other Events</Radio>
-              <Radio value={"Online Events"}>Online Events</Radio>
-              <Radio value={"Hobbies & Interest"}>Hobbies annd Interest</Radio>
-            </Row>
-            <Row>
-              <Radio value={"Concert"}>Concert</Radio>
-              <Radio value={"Seminars"}>Seminars</Radio>
-              <Radio value={"Gaming"}>Gaming</Radio>
-            </Row>
-            <Row>
-              <Radio value={"Conferences"}>Conferences</Radio>
-              <Radio value={"Travel"}>Travel</Radio>
+          <Row gutter={48}>
+            <Col span={12}> <Radio value={"Music"}>Music</Radio></Col>
+            <Col span={12}><Radio value={"Dance"}>Dance</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Drama"}>Drama</Radio></Col>
+            <Col span={12}><Radio value={"Sports"}>Sports</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Workshop"}>Workshop</Radio></Col>
+            <Col span={12}><Radio value={"Management"}>Management</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Fun & Other Events"}>Fun and Other Events</Radio></Col>
+            <Col span={12}><Radio value={"Online Events"}>Online Events</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Hobbies & Interest"}>Hobbies annd Interest</Radio></Col>
+            <Col span={12}><Radio value={"Concert"}>Concert</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Seminars"}>Seminars</Radio></Col>
+            <Col span={12}><Radio value={"Gaming"}>Gaming</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Conferences"}>Conferences</Radio></Col>
+            <Col span={12}><Radio value={"Travel"}>Travel</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"General"}>General</Radio></Col>
+            <Col span={12}><Radio value={"Alumni"}>Alumni</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Others"}>Others</Radio></Col>
+            <Col span={12}><Radio value={"Symposium"}>Symposium</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"TEDx"}>TEDx</Radio></Col>
+            <Col span={12}><Radio value={"Technical"}>Technical</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Entrepreneurship"}>Entrepreneurship</Radio></Col>
+            <Col span={12}><Radio value={"Literature"}>Literature</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Accommodation"}>Accommodation</Radio></Col>
+            <Col span={12}><Radio value={"Departmental"}>Departmental</Radio></Col>
+          </Row>
+          <Row gutter={48}>
+            <Col span={12}><Radio value={"Model United Nations"}>Model United Nations</Radio></Col>
+            <Col span={12}><Radio value={"Merchandise"}>Merchandise</Radio></Col>
+          </Row>
 
-              <Radio value={"General"}>General</Radio>
-            </Row>
-            <Row>
-              <Radio value={"Alumni"}>Alumni</Radio>
-              <Radio value={"Others"}>Others</Radio>
-              <Radio value={"Symposium"}>Symposium</Radio>
-            </Row>
-            <Row>
-              <Radio value={"TEDx"}>TEDx</Radio>
-              <Radio value={"Technical"}>Technical</Radio>
-              <Radio value={"Entrepreneurship"}>Entrepreneurship</Radio>
-            </Row>
-            <Row>
-              <Radio value={"Literature"}>Literature</Radio>
-              <Radio value={"Accommodation"}>Accommodation</Radio>
-              <Radio value={"Departmental"}>Departmental</Radio>
-            </Row>
-            <Radio value={"Model United Nations"}>Model United Nations</Radio>
-            <Radio value={"Merchandise"}>Merchandise</Radio>
-          </Col>
+         
+          
         </Radio.Group>
         <br />
         <br />

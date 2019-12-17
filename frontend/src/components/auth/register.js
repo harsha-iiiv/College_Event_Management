@@ -90,9 +90,7 @@ const Register = ({ setAlert, register, isUserAuthenticated}) => {
             />
           </Form.Item>
           <Form.Item style={{ width: "30%" }}>
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
+           
             <Button
               type="primary"
               disabled={!formValid.isValid}

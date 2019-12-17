@@ -5,18 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "client-install" : "npm install --prefix frontend",
-     "start" : "node server.js",
+    "client-install": "npm install --prefix frontend",
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server \" \"npm run client \""
-
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cubejs-backend/mongobi-driver": "^0.11.6",
+    "@cubejs-backend/server": "^0.11.17",
+    "@cubejs-backend/server-core": "^0.11.17",
     "@hapi/joi": "^16.0.1",
     "bcryptjs": "^2.4.3",
+    "bizcharts": "^3.5.6",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.0",
     "connect-redis": "^4.0.2",

@@ -157,7 +157,7 @@ class EventForm extends Component {
           Proceed
         </Button>
         <Modal
-          title="Basic Modal"
+          title="Fill the event details"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}

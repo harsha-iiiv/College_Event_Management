@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import {connect} from 'react-redux';
 import { getEvents } from '../../actions/events';
 import { getEventById } from "../../actions/events";
+import { deleteEvent } from "../../actions/events";
 import PropTypes from 'prop-types';
 import  EditEventcard from './editevent_card';
 import { Element } from "react-scroll";
@@ -33,7 +34,7 @@ class EditEvents extends Component {
             xl={{ span: 8, offset: 0 }}
           >
             <Row className="event-card" gutter={{ xs: 8, sm: 16, md: 24 }}>
-              <EditEventcard getEventById = {this.props.getEventById} className="event-card" event={event} />
+              <EditEventcard getEventById = {this.props.getEventById} deleteEvent={this.props.deleteEvent} className="event-card" event={event} />
             </Row>
           </Col>
         ));
@@ -58,4 +59,4 @@ EditEvents.propTypes = {
  const mapStateToProps = state =>({
    events: state.events
  });   
-export default connect(mapStateToProps, {getEvents, getEventById})(EditEvents); 
+export default connect(mapStateToProps, {getEvents, getEventById, deleteEvent})(EditEvents); 

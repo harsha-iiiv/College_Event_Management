@@ -21,7 +21,8 @@ import setNormalUserToken from "../utils/setUserToken";
 axios.defaults.baseURL = "http://localhost:8000";
 
 
-// check token and Load User 
+// check token and Load User
+ 
 export const loadUser = () => async (dispatch) => {
   
   if (localStorage.token) {
@@ -241,11 +242,11 @@ export const userlogin = (email, password) => async dispatch => {
      dispatch(loadNormalUser());
      
   } catch (err) {
-    const errors = err.response.data.errors;
+    const errors = "err.response.data.errors";
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
-    }
+    
+      dispatch(setAlert(errors, "danger"));
+   
 
     dispatch({
       type: ULOGIN_FAIL

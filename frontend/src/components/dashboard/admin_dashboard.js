@@ -18,7 +18,7 @@ class Admin_Dashboard extends Component {
           <Row gutter={16}>
             <Col className="gutter-row" span={12}>
               <div className="gutter-box">
-                <Link to= '/admin/editEvents'>
+                <Link to="/admin/editEvents">
                   <Card style={{ width: 300, marginTop: 16 }}>
                     <Meta
                       avatar={<Icon type="control" />}
@@ -31,37 +31,43 @@ class Admin_Dashboard extends Component {
             </Col>
             <Col className="gutter-row" span={12}>
               <div className="gutter-box">
-                <Card style={{ width: 300, marginTop: 16 }}>
-                  <Meta
-                    avatar={<Icon type="line-chart" />}
-                    title="Analytics overview"
-                    description="This is the description"
-                  />
-                </Card>
+                <Link to="/admin/dashboard_admin/analytics">
+                  <Card style={{ width: 300, marginTop: 16 }}>
+                    <Meta
+                      avatar={<Icon type="line-chart" />}
+                      title="Analytics overview"
+                      description="This is the description"
+                    />
+                  </Card>
+                </Link>
               </div>
             </Col>
           </Row>
           <Row gutter={[{ xs: 8, sm: 16, md: 24, lg: 32 }, 20]}>
             <Col className="gutter-row" span={12}>
               <div className="gutter-box">
-                <Card style={{ width: 300, marginTop: 16 }}>
-                  <Meta
-                    avatar={<Icon type="notification" />}
-                    title="Notifications"
-                    description="This is the description"
-                  />
-                </Card>
+                <Link to="/admin/dashboard_admin/announce">
+                  <Card style={{ width: 300, marginTop: 16 }}>
+                    <Meta
+                      avatar={<Icon type="notification" />}
+                      title="Make an announcement"
+                      description="This is the description"
+                    />
+                  </Card>
+                </Link>
               </div>
             </Col>
             <Col className="gutter-row" span={12}>
               <div className="gutter-box">
-                <Card style={{ width: 300, marginTop: 16 }}>
-                  <Meta
-                    avatar={<Icon type="shake" />}
-                    title="Purchased tickets"
-                    description="This is the description"
-                  />
-                </Card>
+                <Link to="/admin/dashboard_admin/purchased_tickets">
+                  <Card style={{ width: 300, marginTop: 16 }}>
+                    <Meta
+                      avatar={<Icon type="shake" />}
+                      title="Purchased tickets"
+                      description="This is the description"
+                    />
+                  </Card>
+                </Link>
               </div>
             </Col>
           </Row>

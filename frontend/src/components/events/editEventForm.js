@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { editEvent } from "../../actions/events";
+import { deleteEvent } from "../../actions/events";
 import Step2Form from "./eventForm_step2";
 import Step1Form from "./eventForm_step1";
 import Step3Form from "./eventForm_step3";

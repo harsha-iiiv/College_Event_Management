@@ -37,13 +37,7 @@ const ULogin = ({ userlogin, userlogout, isUserAuthenticated }) => {
   if (isUserAuthenticated) {
     return (
       <div>
-        Login success
-        <li>
-          <a onClick={userlogout} href="#!">
-            <i className="fas fa-sign-out-alt" />{" "}
-            <span className="hide-sm">Logout</span>
-          </a>
-        </li>
+      <Redirect to='/' />
       </div>
     );
   }
