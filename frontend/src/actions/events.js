@@ -9,7 +9,6 @@ import {
   EVENTS_LOADING,
   EVENT_REG
 } from "./types";
-axios.defaults.baseURL = "http://localhost:8000";
 //GET EVENTS
 export const getEvents = () => async dispatch => {
   try {

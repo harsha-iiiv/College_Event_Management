@@ -18,7 +18,6 @@ import {
 } from "./types";
 import setUserToken from "../utils/setAdminToken";
 import setNormalUserToken from "../utils/setUserToken";
-axios.defaults.baseURL = "http://localhost:8000";
 
 
 // check token and Load User

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import '../../App.css'
 
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import { Container } from "@material-ui/core";
 
 class Step1Form extends Component {
   continue = e => {
@@ -18,7 +17,7 @@ class Step1Form extends Component {
 
     return (
       <React.Fragment>
-        <Container className="Step1">
+        <div className="container">
           <Form>
             <Input
               type="text"
@@ -85,7 +84,7 @@ class Step1Form extends Component {
             <br />
             <br />
           </Form>
-        </Container>
+        </div>
       </React.Fragment>
     );
   }

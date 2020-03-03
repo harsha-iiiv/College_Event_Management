@@ -10,8 +10,8 @@ import Step4Form from "./eventForm_step4";
 import Success from './success';
 import ThankYou from './thankYou';
 import StepWizard from "react-step-wizard";
-import Dialog from "@material-ui/core/Dialog"; 
 import { Modal, Button } from "antd";
+
 
 
 
