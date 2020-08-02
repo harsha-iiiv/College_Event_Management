@@ -10,19 +10,16 @@ const bodyParser = require('body-parser');
 const connectDB = require('./config/db_connect.js');
 const cors = require('cors');
 var CubejsServerCore = require('@cubejs-backend/server-core');
-const CubejsServer = require("@cubejs-backend/server");
+// const CubejsServer = require("@cubejs-backend/server");
 const path = require("path");
 
-app.get('/', (req,res) =>{
 
-
-        res.send('Hello');
-
-    })
  connectDB();
  app.use(cors());
  app.use(bodyParser.json());
- app.use(express.static(path.join(__dirname, "frontend/build")));
+
+const serverCore = CubejsServerCore.create();
+serverCore.initApp(app);
 
  app.use('/api/events',Events);
  app.use('/api/user',Users);
@@ -33,7 +30,6 @@ app.get('/', (req,res) =>{
 
 
  require("dotenv").config();
- CubejsServerCore.create().initApp(app);
 
 //  app.use('/api/event_reg',Event_reg);
 // app.get('/', (req,res,err) =>{
@@ -42,18 +38,11 @@ app.get('/', (req,res) =>{
 // //     else
 // //     res.send('HEllo');
 // // })
-const server = new CubejsServer();
 
 
 
-
-const port = process.env.PORT || 4000;
-server.listen().then(({ port }) => {
-  console.log(`ðŸš€ Cube.js server is listening on ${port}`);
-}).catch(e => {
-  console.error('Fatal error during server start: ');
-  console.error(e.stack || e);
-});
 app.listen(8000, (err) =>{
+  if(err)
     console.log(err)
+    console.log(`🚀 Cube.js server  is listening on 8000`)
 })

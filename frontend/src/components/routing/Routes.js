@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Switch } from 'react-router-dom';
-import {spring, AnimatedSwitch } from "react-router-transition";
 import EditEvents from "../events/editevents";
 import Register from '../auth/register';
 import Forgotpassword from '../auth/Forgotpassword';
